@@ -12,8 +12,10 @@
     cursor: pointer;
   
     &:hover {
-      background-color: white;
-      color: darkslategray;
-      border: 1px solid darkslategray;
+      opacity: 0.8;
     }
+  }
+
+  .custom-button a {
+    text-decoration: none;
   }

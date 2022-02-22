@@ -16,9 +16,6 @@ function Specified() {
             setIsLoaded(true);
             setItems(result);
           },
-          // Nota: é importante lidar com errros aqui
-          // em vez de um bloco catch() para não receber
-          // exceções de erros reais nos componentes.
           (error) => {
             setIsLoaded(true);
             setError(error);

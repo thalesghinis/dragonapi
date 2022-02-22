@@ -8,14 +8,14 @@ function Logged() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
-    // const [data, setData] = useState([]);
-    // const [sortType, setSortType] = useState('');
-  
-  
-    // Nota: O array [] deps vazio significa
-    // este useEffect será executado uma vez
-    // semelhante ao componentDidMount()
-    useEffect(() => {
+    const [item, setItem] = useState([]);
+    const handleRemove = (items) => {
+      const newItem = items.filter((item) => item.items !== items);
+   
+      setItem( newItem);
+    };
+   
+      useEffect(() => {
       fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon")
         .then(res => res.json())
         .then(
@@ -23,29 +23,12 @@ function Logged() {
             setIsLoaded(true);
             setItems(result);
           },
-          // Nota: é importante lidar com errros aqui
-          // em vez de um bloco catch() para não receber
-          // exceções de erros reais nos componentes.
           (error) => {
             setIsLoaded(true);
             setError(error);
           }
         )
     }, [])
-
-
-    // useEffect(() => {
-    //     const sortArray = type => {
-    //       const types = {
-    //         name: 'name',
-    //       };
-    //       const sortProperty = types[type];
-    //       const sorted = [...items].sort((a, b) => b[sortProperty] - a[sortProperty]);
-    //       setData(sorted);
-    //     };
-    //     sortArray(sortType);
-    //   }, [sortType]); 
-    // const items = [...item].sort();
 
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -73,10 +56,11 @@ function Logged() {
             </>
           ))}
         </ul>
+
         <div className="flexStyle">
             <CustomButton>
                 <Link to='/specified'>
-                    Veja um dragon especifico
+                    Veja um Dragão especifico
                 </Link>
             </CustomButton>
         </div>
